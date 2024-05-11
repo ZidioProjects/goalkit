@@ -27,8 +27,14 @@ class StringManager {
   static const String startWith = 'Start with your priority first';
   static const String newGoal = 'New Goal';
   static const String noCategory = 'No Category Available';
-  static const String addCategory  = 'Click on the add new category to create one';
+  static const String addCategory  = 'Click on the add new category to';
+  static const String create  = 'create one';
   static const String newCategory = 'New Category';
+  static const String goalsG = 'Goals';
+
+  //Analytics
+  static const String goalsStats = 'Goal Stats';
+  static const String noStats = 'No Goal Stats Available';
 
   //profile page
   static const String userName = 'James Floyd';

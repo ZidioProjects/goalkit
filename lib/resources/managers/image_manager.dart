@@ -16,6 +16,8 @@ class ImageManager {
   static const String statsIcon = "$imagePath/stats.png";
   static const String folderIcon = "$imagePath/folder.png";
   static const String settingsIcon = "$imagePath/settings.png";
+  static const String pic1 = "$imagePath/pic1.png";
+  static const String pic2 = "$imagePath/pic2.png";
 
   //profile
   static const String profilepic = "$imagePath/profile_pic.png";

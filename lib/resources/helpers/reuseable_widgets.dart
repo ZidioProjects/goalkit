@@ -24,17 +24,17 @@ Widget blueButton({required text}){
   );
 }
 
-Widget whiteButton({required text}){
+Widget whiteButton(text, double width){
   return Container(
     height: 48,
-    width: logicalWidth(),
+    width: width,
     clipBehavior: Clip.antiAlias,
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(100),
       border: Border.all(
         color: primaryColor,
-        width: 0.5
+        width: 1
       )
     ),
     child: Center(

@@ -6,14 +6,14 @@ import 'package:goalkit/resources/managers/image_manager.dart';
 import 'package:goalkit/resources/managers/string_manager.dart';
 import 'package:goalkit/resources/managers/styles_manager.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class AnalyticsPage extends StatefulWidget {
+  const AnalyticsPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<AnalyticsPage> createState() => _AnalyticsPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _AnalyticsPageState extends State<AnalyticsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,19 +29,11 @@ class _HomePageState extends State<HomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text.rich(
-                        TextSpan(
-                            children: [
-                              TextSpan(
-                                text: StringManager.hi,
-                                style: AppTextStyle.headerStyle.copyWith(color: Colors.black),
-                              ),
-                              TextSpan(
-                                text: StringManager.name,
-                                style: AppTextStyle.headerStyle.copyWith(color: Colors.black),
-                              ),
-                            ]
-                        )
+                    Text(
+                      StringManager.goalsStats,
+                      style: AppTextStyle.headerStyle.copyWith(
+                        color: Colors.black,
+                      ),
                     ),
                     Image.asset(
                       ImageManager.profilepic,
@@ -50,39 +42,29 @@ class _HomePageState extends State<HomePage> {
                     )
                   ],
                 ),
-                Text(
-                  StringManager.newDay,
-                  style: AppTextStyle.bodyStyle16.copyWith(color: ash2Color),
-                ),
-                const Gap(50),
+                const Gap(80),
                 Center(
                   child: Column(
                     children: [
                       Image.asset(
-                        ImageManager.pic1,
+                        ImageManager.pic2,
                         width: 400,
                         height: 200,
                       ),
                       const Gap(30),
                       Text(
-                        StringManager.getStarted,
-                        style: AppTextStyle.headerMediumStyle.copyWith(color: Colors.black),
-                      ),
-                      Text(
-                        StringManager.startWith,
-                        style: AppTextStyle.bodyStyle16.copyWith(color: ash3Color),
+                        StringManager.noStats,
+                        style: AppTextStyle.headerMediumStyle
+                            .copyWith(color: Colors.black),
                       ),
                     ],
                   ),
                 ),
-                const Gap(100),
-                whiteButton('New Goal', 300)
               ],
             ),
           ),
         ),
       ),
-
     );
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:goalkit/resources/managers/color_manager.dart';
 import 'package:goalkit/resources/managers/image_manager.dart';
+import 'package:goalkit/views/analytics/analytics_page.dart';
+import 'package:goalkit/views/category/category_page.dart';
 import 'package:goalkit/views/home/home_page.dart';
 
 class Nav extends StatefulWidget {
@@ -15,8 +17,8 @@ class _NavState extends State<Nav> {
   late int _currentIndex;
   final List<Widget> _children = [
     const HomePage(),
-    const HomePage(),
-    const HomePage(),
+    const AnalyticsPage(),
+    const CategoryPage(),
     const HomePage(),
   ];
 
