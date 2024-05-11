@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:goalkit/resources/managers/color_manager.dart';
@@ -27,7 +28,11 @@ class Profile extends StatelessWidget {
               //header
               Row(
                 children: [
-                  SvgPicture.asset(ImageManager.backwardArrow),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.pop(context);
+                    },
+                      child: SvgPicture.asset(ImageManager.backwardArrow)),
                   const Gap(135),
                   Text(StringManager.profile,
                       style: AppTextStyle.headerStyle20),
