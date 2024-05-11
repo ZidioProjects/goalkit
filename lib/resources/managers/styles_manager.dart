@@ -17,6 +17,7 @@ class AppTextStyle {
     fontSize: 16,
     color: Colors.white,
   );
+
   //header style24
   static const TextStyle headerStyle24 = TextStyle(
     fontWeight: FontWeight.w600,

@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:goalkit/resources/managers/color_manager.dart';
-import 'package:goalkit/resources/managers/icons.dart';
 import 'package:goalkit/resources/managers/image_manager.dart';
 import 'package:goalkit/resources/managers/string_manager.dart';
 import 'package:goalkit/resources/managers/styles_manager.dart';
@@ -30,7 +27,7 @@ class Profile extends StatelessWidget {
               //header
               Row(
                 children: [
-                  SvgPicture.asset(IconsManager.backwardArrow),
+                  SvgPicture.asset(ImageManager.backwardArrow),
                   const Gap(135),
                   Text(StringManager.profile,
                       style: AppTextStyle.headerStyle20),
@@ -134,7 +131,7 @@ class Profile extends StatelessWidget {
                   Options(
                     text: StringManager.goalStreak,
                     text2: StringManager.days,
-                    icon: SvgPicture.asset(IconsManager.fire2),
+                    icon: SvgPicture.asset(ImageManager.fire2),
                   ),
                   Gap(35),
                   OptionTwo(
@@ -153,7 +150,7 @@ class Profile extends StatelessWidget {
                     child: Options(
                       text: StringManager.calendar,
                       text2: StringManager.activities,
-                      icon: SvgPicture.asset(IconsManager.forwardArrow),
+                      icon: SvgPicture.asset(ImageManager.forwardArrow),
                     ),
                   ),
                   Gap(35),

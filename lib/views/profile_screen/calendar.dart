@@ -5,7 +5,6 @@ import 'package:goalkit/resources/managers/color_manager.dart';
 import 'package:goalkit/resources/managers/image_manager.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import '../../resources/managers/icons.dart';
 import '../../resources/managers/string_manager.dart';
 import '../../resources/managers/styles_manager.dart';
 
@@ -39,7 +38,7 @@ class _CalendarPageState extends State<CalendarPage> {
               //header
               Row(
                 children: [
-                  SvgPicture.asset(IconsManager.backwardArrow),
+                  SvgPicture.asset(ImageManager.backwardArrow),
                   const Gap(135),
                   Text(StringManager.calendar,
                       style: AppTextStyle.headerStyle20),
@@ -90,7 +89,7 @@ class _CalendarPageState extends State<CalendarPage> {
                             const Gap(20),
                             Text(StringManager.mealPlan),
                             const Gap(10),
-                            SvgPicture.asset(IconsManager.purple),
+                            SvgPicture.asset(ImageManager.purple),
                           ],
                         ),
                         const Gap(130),
@@ -112,7 +111,7 @@ class _CalendarPageState extends State<CalendarPage> {
                             const Gap(20),
                             Text(StringManager.stay),
                             const Gap(10),
-                            SvgPicture.asset(IconsManager.blue),
+                            SvgPicture.asset(ImageManager.blue),
                           ],
                         ),
                         const Gap(130),
@@ -134,7 +133,7 @@ class _CalendarPageState extends State<CalendarPage> {
                             const Gap(20),
                             Text(StringManager.portion),
                             const Gap(10),
-                            SvgPicture.asset(IconsManager.orange),
+                            SvgPicture.asset(ImageManager.orange),
                           ],
                         ),
                         const Gap(130),

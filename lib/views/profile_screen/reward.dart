@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:goalkit/resources/managers/color_manager.dart';
+import 'package:goalkit/resources/managers/image_manager.dart';
 
-import '../../resources/managers/icons.dart';
 import '../../resources/managers/string_manager.dart';
 import '../../resources/managers/styles_manager.dart';
 
@@ -24,7 +24,7 @@ class RewardPage extends StatelessWidget {
               //header
               Row(
                 children: [
-                  SvgPicture.asset(IconsManager.backwardArrow),
+                  SvgPicture.asset(ImageManager.backwardArrow),
                   const Gap(135),
                   Text(StringManager.rewards,
                       style: AppTextStyle.headerStyle20),
@@ -47,7 +47,7 @@ class RewardPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         SvgPicture.asset(
-                          IconsManager.fire3,
+                          ImageManager.fire3,
                         ),
                         const Gap(30),
                         Column(
@@ -102,7 +102,7 @@ class RewardPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         SvgPicture.asset(
-                          IconsManager.diamond,
+                          ImageManager.diamond,
                         ),
                         const Gap(30),
                         Column(
@@ -157,7 +157,7 @@ class RewardPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         SvgPicture.asset(
-                          IconsManager.fire3,
+                          ImageManager.fire3,
                         ),
                         const Gap(30),
                         Column(

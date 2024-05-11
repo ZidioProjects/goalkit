@@ -15,9 +15,20 @@ class StringManager {
   static const String weWait = 'We can’t wait to see you achieve your';
   static const String goals = 'goals';
 
-  //home
 
   //login and signup
+
+
+  //home
+  static const String hi = 'Hi, ';
+  static const String name = 'Michael';
+  static const String newDay = 'It’s a new day to crush those goals!';
+  static const String getStarted = 'Get Started';
+  static const String startWith = 'Start with your priority first';
+  static const String newGoal = 'New Goal';
+  static const String noCategory = 'No Category Available';
+  static const String addCategory  = 'Click on the add new category to create one';
+  static const String newCategory = 'New Category';
 
   //profile page
   static const String userName = 'James Floyd';
