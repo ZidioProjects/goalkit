@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:goalkit/resources/helpers/reuseable_widgets.dart';
@@ -5,6 +6,7 @@ import 'package:goalkit/resources/managers/color_manager.dart';
 import 'package:goalkit/resources/managers/image_manager.dart';
 import 'package:goalkit/resources/managers/string_manager.dart';
 import 'package:goalkit/resources/managers/styles_manager.dart';
+import 'package:goalkit/views/profile_screen/profile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -43,10 +45,20 @@ class _HomePageState extends State<HomePage> {
                             ]
                         )
                     ),
-                    Image.asset(
-                      ImageManager.profilepic,
-                      width: 30,
-                      height: 30,
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Profile(),
+                          ),
+                        );
+                      },
+                      child: Image.asset(
+                        ImageManager.profilepic,
+                        width: 30,
+                        height: 30,
+                      ),
                     )
                   ],
                 ),
