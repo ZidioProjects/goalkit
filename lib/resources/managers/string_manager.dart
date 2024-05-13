@@ -1,4 +1,8 @@
 class StringManager {
+
+  //font
+  static const String fontFamily = 'DMSans';
+
   // Splash/Onboarding
   static const String appName = 'GoalKit';
   static const String text1 = 'Join million of users to reach';
@@ -17,7 +21,21 @@ class StringManager {
 
 
   //login and signup
-
+  static const String login = 'Login';
+  static const String doNot = 'Don’t have an account? ';
+  static const String createAccount = 'Create an account';
+  static const String emailAddress = 'Email address';
+  static const String password = 'Password';
+  static const String enterSecure = 'Enter a secure password';
+  static const String forgotPass = 'Forgot password';
+  static const String signGoogle = 'Sign in with Google';
+  static const String alreadyHave = 'Already have an account? ';
+  static const String firstName = 'First name';
+  static const String enterFirstName = 'Enter your first name';
+  static const String lastName = 'Last name';
+  static const String enterLastName = 'Enter your last name';
+  static const String enterEmail = 'Enter your email address';
+  static const String or = 'or';
 
   //home
   static const String hi = 'Hi, ';

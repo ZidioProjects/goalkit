@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:goalkit/resources/managers/color_manager.dart';
+import 'package:goalkit/resources/managers/image_manager.dart';
+import 'package:goalkit/resources/managers/string_manager.dart';
 import 'package:goalkit/resources/managers/styles_manager.dart';
 import 'package:goalkit/resources/managers/values_manager.dart';
 
@@ -45,6 +48,40 @@ Widget whiteButton(text, double width){
           color: primaryColor
         ),
       ),
+    ),
+  );
+}
+
+Widget googleButton(){
+  return Container(
+    height: 48,
+    width: logicalWidth(),
+    clipBehavior: Clip.antiAlias,
+    decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(100),
+        border: Border.all(
+            color: primaryColor,
+            width: 1
+        )
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset(
+          ImageManager.googleIcon,
+          height: 24,
+          width: 24,
+        ),
+        Gap(20),
+        Text(
+          StringManager.signGoogle,
+          textAlign: TextAlign.center,
+          style: AppTextStyle.headerMediumStyle.copyWith(
+              color: primaryColor
+          ),
+        ),
+      ],
     ),
   );
 }

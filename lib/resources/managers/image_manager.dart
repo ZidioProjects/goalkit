@@ -2,6 +2,7 @@ const String imagePath = "assets/images";
 const _iconPath = 'assets/icons/';
 
 class ImageManager {
+
   //splash and onboarding
   static const String splashLogo = "$imagePath/splash_logo.png";
   static const String full = "$imagePath/full.png";
@@ -18,6 +19,7 @@ class ImageManager {
   static const String settingsIcon = "$imagePath/settings.png";
   static const String pic1 = "$imagePath/pic1.png";
   static const String pic2 = "$imagePath/pic2.png";
+  static const String googleIcon = "$imagePath/google_icon.png";
 
   //profile
   static const String profilepic = "$imagePath/profile_pic.png";
