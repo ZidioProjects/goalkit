@@ -15,7 +15,7 @@ class AppTextStyle {
     fontWeight: FontWeight.w600,
     fontFamily: 'DMSans',
     fontSize: 16,
-    color: Colors.white,
+    color: Colors.white, 
   );
 
   //header style24
