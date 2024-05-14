@@ -37,7 +37,7 @@ class _FirstPageState extends State<FirstPage> {
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
                   color: ash2Color,
-                  width: 0.5
+                  width: 1
                 )
               ),
               child: const TextField(

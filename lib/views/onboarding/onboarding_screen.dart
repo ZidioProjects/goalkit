@@ -5,6 +5,7 @@ import 'package:goalkit/resources/managers/color_manager.dart';
 import 'package:goalkit/resources/managers/image_manager.dart';
 import 'package:goalkit/resources/managers/string_manager.dart';
 import 'package:goalkit/resources/managers/styles_manager.dart';
+import 'package:goalkit/views/authentication/login/login_page.dart';
 import 'package:goalkit/views/onboarding/pages/first.dart';
 import 'package:goalkit/views/onboarding/pages/second.dart';
 import 'package:goalkit/views/onboarding/pages/third.dart';
@@ -69,9 +70,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   const Gap(10),
                   _currentPage == 0
                   ? Center(
-                    child: Text(
-                      StringManager.skip,
-                      style: AppTextStyle.headerMediumStyle.copyWith(color: primaryColor),
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()),
+                        );
+                      },
+                      child: Text(
+                        StringManager.skip,
+                        style: AppTextStyle.headerMediumStyle.copyWith(color: primaryColor),
+                      ),
                     ),
                   )
                   : const SizedBox(),

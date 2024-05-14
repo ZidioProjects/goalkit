@@ -2,9 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:goalkit/resources/navigation/bottom_navigation.dart';
 import 'package:goalkit/views/home/home_page.dart';
 import 'package:goalkit/views/splash_screen.dart';
+import 'package:provider/provider.dart';
+
+import 'api/providers/app_providers.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+      MultiProvider(
+        providers: appProviders,
+        child: const MyApp(),
+      )
+  );
 }
 
 class MyApp extends StatelessWidget {

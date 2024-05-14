@@ -30,7 +30,7 @@ class SecondPage extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: ash2Color, width: 0.5)),
+                border: Border.all(color: ash2Color, width: 1)),
             child: const TextField(
               maxLines: 6,
               decoration: InputDecoration(
