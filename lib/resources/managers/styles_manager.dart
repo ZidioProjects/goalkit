@@ -72,4 +72,11 @@ class AppTextStyle {
     fontSize: 16,
     color: Colors.black,
   );
+
+  static const TextStyle bodyStyle18 = TextStyle(
+    fontWeight: FontWeight.w400,
+    fontFamily: 'DMSans',
+    fontSize: 18,
+    color: Colors.black,
+  );
 }

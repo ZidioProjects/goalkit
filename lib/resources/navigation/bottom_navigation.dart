@@ -4,6 +4,7 @@ import 'package:goalkit/resources/managers/image_manager.dart';
 import 'package:goalkit/views/analytics/analytics_page.dart';
 import 'package:goalkit/views/category/category_page.dart';
 import 'package:goalkit/views/home/home_page.dart';
+import 'package:goalkit/views/settings_screen/settings.dart';
 
 class Nav extends StatefulWidget {
   final int currentIndex;
@@ -19,7 +20,7 @@ class _NavState extends State<Nav> {
     const HomePage(),
     const AnalyticsPage(),
     const CategoryPage(),
-    const HomePage(),
+    const SettingsPage(),
   ];
 
   @override

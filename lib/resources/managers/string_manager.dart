@@ -1,5 +1,4 @@
 class StringManager {
-
   //font
   static const String fontFamily = 'DMSans';
 
@@ -18,7 +17,6 @@ class StringManager {
   static const String welcome = 'Welcome';
   static const String weWait = 'We can’t wait to see you achieve your';
   static const String goals = 'goals';
-
 
   //login and signup
   static const String login = 'Login';
@@ -45,8 +43,8 @@ class StringManager {
   static const String startWith = 'Start with your priority first';
   static const String newGoal = 'New Goal';
   static const String noCategory = 'No Category Available';
-  static const String addCategory  = 'Click on the add new category to';
-  static const String create  = 'create one';
+  static const String addCategory = 'Click on the add new category to';
+  static const String create = 'create one';
   static const String newCategory = 'New Category';
   static const String goalsG = 'Goals';
 
@@ -85,4 +83,16 @@ class StringManager {
   static const String stay = 'Stay hydrated';
   static const String portion = 'Control Portion';
   static const String size = 'sizes';
+
+  //settings
+
+  static const String lang = 'Language';
+  static const String notification = 'Notification';
+  static const String condition =
+      'If you can’t remember your current\n password just click “forgot password"';
+  static const String change = 'Change Password';
+  static const String current = 'Current Password';
+  static const String newPas = 'New Password';
+  static const String enter = 'Enter your Password';
+  static const String enterNew = 'Enter your new Password';
 }

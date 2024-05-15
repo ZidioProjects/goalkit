@@ -2,7 +2,6 @@ const String imagePath = "assets/images";
 const _iconPath = 'assets/icons/';
 
 class ImageManager {
-
   //splash and onboarding
   static const String splashLogo = "$imagePath/splash_logo.png";
   static const String full = "$imagePath/full.png";
