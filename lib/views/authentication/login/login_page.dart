@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -11,6 +12,8 @@ import 'package:goalkit/resources/managers/styles_manager.dart';
 import 'package:goalkit/resources/navigation/bottom_navigation.dart';
 import 'package:goalkit/views/authentication/signup/signup_page.dart';
 import 'package:provider/provider.dart';
+
+import '../../forgot_password/forgot_password_screen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -117,10 +120,19 @@ class _LoginPageState extends State<LoginPage> {
                       },
                     ),
                     const Gap(20),
-                    Text(
-                      StringManager.forgotPass,
-                      style: AppTextStyle.headerMediumStyle
-                          .copyWith(color: Colors.black),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ForgotPassword()),
+                        );
+                      },
+                      child: Text(
+                        StringManager.forgotPass,
+                        style: AppTextStyle.headerMediumStyle
+                            .copyWith(color: Colors.black),
+                      ),
                     ),
                     const Gap(40),
                     GestureDetector(

@@ -95,4 +95,19 @@ class StringManager {
   static const String newPas = 'New Password';
   static const String enter = 'Enter your Password';
   static const String enterNew = 'Enter your new Password';
+
+  //forgot password
+  static const String worry =
+      'Don’t worry, Provide your email for\n the password reset link.';
+  static const String request = 'Request reset link';
+
+  // reset link
+  static const String reset = 'Reset link sent';
+  static const String passwordLink =
+      'Your password reset link has been\n sent to your email';
+  static const String open = 'Open Mail';
+
+  //reset password
+  static const String resetPass = 'Reset password';
+  static const String secure = 'Enter a secure password';
 }
