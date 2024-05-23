@@ -20,6 +20,10 @@ class ImageManager {
   static const String pic2 = "$imagePath/pic2.png";
   static const String googleIcon = "$imagePath/google_icon.png";
 
+  //reset password
+
+  static const String mailSent = "$imagePath/mail_sent.png";
+
   //profile
   static const String profilepic = "$imagePath/profile_pic.png";
   static const String fire = "$imagePath/fire.png";

@@ -7,6 +7,7 @@ import '../../resources/helpers/reuseable_widgets.dart';
 import '../../resources/managers/image_manager.dart';
 import '../../resources/managers/string_manager.dart';
 import '../../resources/managers/styles_manager.dart';
+import '../forgot_password/forgot_password_screen.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({super.key});
@@ -108,10 +109,19 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               ),
               const Gap(20),
               Center(
-                child: Text(
-                  StringManager.forgotPass,
-                  style: AppTextStyle.headerMediumStyle
-                      .copyWith(color: Colors.black),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ForgotPassword()),
+                    );
+                  },
+                  child: Text(
+                    StringManager.forgotPass,
+                    style: AppTextStyle.headerMediumStyle
+                        .copyWith(color: Colors.black),
+                  ),
                 ),
               ),
             ],
