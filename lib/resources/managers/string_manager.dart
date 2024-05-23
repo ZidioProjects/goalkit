@@ -47,6 +47,20 @@ class StringManager {
   static const String create = 'create one';
   static const String newCategory = 'New Category';
   static const String goalsG = 'Goals';
+  static const String createNew = 'Create new goal';
+  static const String wantAchieve = 'What do you want to achieve?';
+  static const String chooseDuration = 'Choose a duration';
+  static const String affirm = 'Affirmation';
+  static const String whySetting = 'Why are you setting this goal?';
+  static const String action = 'Action Plans';
+  static const String addAction = 'Add Action Plan';
+  static const String remind = 'Reminder';
+  static const String tagDoc = 'Tap to upload a image or document';
+  static const String uploadDoc = 'Upload a document';
+  static const String createGoal = 'Create Goal';
+  static const String createActionPlan = 'Create action plan';
+  static const String whatActionPlan = 'What is your action plan?';
+  static const String howOften = 'How often do you want to do this';
 
   //Analytics
   static const String goalsStats = 'Goal Stats';
@@ -85,7 +99,6 @@ class StringManager {
   static const String size = 'sizes';
 
   //settings
-
   static const String lang = 'Language';
   static const String notification = 'Notification';
   static const String condition =

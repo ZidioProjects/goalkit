@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gap/gap.dart';
-import 'package:goalkit/api/providers/login_provider.dart';
 import 'package:goalkit/api/providers/signup_provider.dart';
 import 'package:goalkit/resources/helpers/custom_textfield.dart';
 import 'package:goalkit/resources/helpers/reuseable_widgets.dart';
@@ -28,7 +27,6 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
-    final signupProvider = Provider.of<SignUpProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -167,10 +165,7 @@ class _SignupPageState extends State<SignupPage> {
                                 email: emailController.text.trim(),
                                 password: passwordController.text.trim(),
                                 firstName: firstNameController.text.trim(),
-                                lastName: lastNameController.text.trim(),
-                                gender: 'Male',
-                                phone: '2349075112158');
-
+                                lastName: lastNameController.text.trim());
                             if (isSubmitted) {
                               Navigator.push(
                                 context,

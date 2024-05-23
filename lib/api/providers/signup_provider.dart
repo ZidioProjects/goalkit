@@ -16,9 +16,7 @@ class SignUpProvider with ChangeNotifier {
       {required String email,
       required String password,
       required String firstName,
-      required String lastName,
-      required String gender,
-      required String phone}) async {
+      required String lastName}) async {
     bool isAccountCreated = false;
     _isLoading = true;
     notifyListeners();
@@ -42,8 +40,6 @@ class SignUpProvider with ChangeNotifier {
           'password': password,
           "firstname": firstName,
           "lastname": lastName,
-          "gender": gender,
-          "phone": phone,
         }),
       );
 
