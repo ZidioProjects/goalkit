@@ -128,4 +128,12 @@ class StringManager {
   //reset password
   static const String resetPass = 'Reset password';
   static const String secure = 'Enter a secure password';
+
+  //language screen
+  static const String search = 'Search for a language';
+  static const String eng = 'English';
+  static const String hin = 'Hindi';
+  static const String arab = 'Arabic';
+  static const String french = 'French';
+  static const String spanish = 'Spanish';
 }
