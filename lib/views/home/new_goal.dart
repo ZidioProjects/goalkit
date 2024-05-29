@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:gap/gap.dart';
@@ -29,13 +27,7 @@ class _NewGoalState extends State<NewGoal> {
   bool status = false;
 
   List options = ['Option 1', 'Option 2', 'Option 3'];
-  String _selectedOption = 'Option 1';
-
-  void _handleRadioValueChange(String? value) {
-    setState(() {
-      _selectedOption = value.toString();
-    });
-  }
+  int _value = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -104,15 +96,15 @@ class _NewGoalState extends State<NewGoal> {
                         ),
                       ),
                     ),
-                    Gap(20),
+                    const Gap(20),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.access_time,
                           color: Colors.black,
                           size: 20,
                         ),
-                        Gap(10),
+                        const Gap(10),
                         Text(
                           StringManager.chooseDuration,
                           style: AppTextStyle.bodyStyle16
@@ -180,12 +172,12 @@ class _NewGoalState extends State<NewGoal> {
                   children: [
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.access_time,
                           color: Colors.black,
                           size: 20,
                         ),
-                        Gap(5),
+                        const Gap(5),
                         Text(
                           StringManager.remind,
                           style: AppTextStyle.bodyStyle16
@@ -225,7 +217,7 @@ class _NewGoalState extends State<NewGoal> {
                         buildDialog(context);
                       },
                       child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                         clipBehavior: Clip.antiAlias,
                         decoration: BoxDecoration(
                             color: Colors.white,
@@ -238,7 +230,7 @@ class _NewGoalState extends State<NewGoal> {
                         child: Center(
                           child: Row(
                             children: [
-                              Icon(Icons.add, size: 20, color: primaryColor,),
+                              const Icon(Icons.add, size: 20, color: primaryColor,),
                               Text(
                                 StringManager.addAction,
                                 textAlign: TextAlign.center,
@@ -262,7 +254,7 @@ class _NewGoalState extends State<NewGoal> {
                 const Gap(10),
                 Container(
                   width: logicalWidth(),
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
                       color: Colors.white,
@@ -307,12 +299,12 @@ class _NewGoalState extends State<NewGoal> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Gap(15),
+                  const Gap(15),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         StringManager.createActionPlan,
                         style: AppTextStyle.headerStyle20,
                       ),
@@ -321,50 +313,73 @@ class _NewGoalState extends State<NewGoal> {
                           onTap: () {
                             Navigator.pop(context);
                           },
-                          child: Icon(Icons.close, size: 25, color: Colors.black,)),
+                          child: const Icon(Icons.close, size: 25, color: Colors.black,)),
                     ],
                   ),
-                  Gap(25),
+                  const Gap(25),
                   Text(
                     StringManager.whatActionPlan,
                     style: AppTextStyle.bodyStyle14
                         .copyWith(color: Colors.black),
                   ),
-                  Gap(10),
-                  CustomTextField(
+                  const Gap(10),
+                  const CustomTextField(
                     hintText: 'I will....',
                     borderColor: Colors.black,
                     enabledBorderColor: Colors.black,
                     focusedBorderColor: Colors.black,
                   ),
-                  Gap(20),
+                  const Gap(20),
                   Text(
                     StringManager.howOften,
                     style: AppTextStyle.bodyStyle14
                         .copyWith(color: Colors.black),
                   ),
-                 Column(
+                  Column(
                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      RadioListTile<String>(
-                        title: const Text('Daily'),
-                        value: 'Option 1',
-                        groupValue: _selectedOption,
-                        onChanged: _handleRadioValueChange,
+                      Row(
+                        children: [
+                          Radio(value: 1, groupValue: _value, onChanged: (value){
+                            setState(() {
+                              _value = value!;
+                            });
+                          }),
+                          const Gap(10),
+                          const Text(StringManager.daily,
+                          style: AppTextStyle.bodyStyle14,),
+
+                        ],
                       ),
-                      RadioListTile<String>(
-                        title: const Text('Weekly'),
-                        value: 'Option 2',
-                        groupValue: 'Option 1',
-                        onChanged: _handleRadioValueChange,
+                      Row(
+                        children: [
+                          Radio(value: 2, groupValue: _value, onChanged: (value){
+                            setState(() {
+                              _value = value!;
+                            });
+                          }),
+                          const Gap(10),
+                          const Text(StringManager.weekly,
+                            style: AppTextStyle.bodyStyle14,),
+
+                        ],
                       ),
-                      RadioListTile<String>(
-                        title: const Text('Monthly'),
-                        value: 'Option 3',
-                        groupValue: _selectedOption,
-                        onChanged: _handleRadioValueChange,
-                      ),
+                      Row(
+                        children: [
+                          Radio(value: 3, groupValue: _value, onChanged: (value){
+                            setState(() {
+                              _value = value!;
+                            });
+                          }),
+                          const Gap(10),
+                          const Text(StringManager.monthly,
+                            style: AppTextStyle.bodyStyle14,),
+                        ],
+                      )
                     ],
+                  ),
+                  Center(
+                    child: blueButton(text: StringManager.createAction),
                   )
                 ],
               ),

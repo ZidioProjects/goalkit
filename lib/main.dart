@@ -6,6 +6,7 @@ import 'package:goalkit/views/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'api/providers/app_providers.dart';
+import 'views/settings_screen/change_password_screen.dart';
 
 void main() {
   runApp(
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: NewGoal(),
+      home: SplashScreen(),
     );
   }
 }

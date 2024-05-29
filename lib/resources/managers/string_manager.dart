@@ -61,6 +61,10 @@ class StringManager {
   static const String createActionPlan = 'Create action plan';
   static const String whatActionPlan = 'What is your action plan?';
   static const String howOften = 'How often do you want to do this';
+  static const String daily = 'Daily';
+  static const String weekly = 'Weekly';
+  static const String monthly = 'Monthly';
+  static const String createAction = 'Create Action';
 
   //Analytics
   static const String goalsStats = 'Goal Stats';
@@ -106,6 +110,7 @@ class StringManager {
   static const String change = 'Change Password';
   static const String current = 'Current Password';
   static const String newPas = 'New Password';
+  static const String confirmNewPass = 'Confirm New Password';
   static const String enter = 'Enter your Password';
   static const String enterNew = 'Enter your new Password';
 
