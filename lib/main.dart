@@ -8,12 +8,10 @@ import 'package:provider/provider.dart';
 import 'api/providers/app_providers.dart';
 
 void main() {
-  runApp(
-      MultiProvider(
-        providers: appProviders,
-        child: const MyApp(),
-      )
-  );
+  runApp(MultiProvider(
+    providers: appProviders,
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -23,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: NewGoal(),
+      home: SplashScreen(),
     );
   }
 }

@@ -39,4 +39,10 @@ class ImageManager {
   static const String orange = '${_iconPath}orange_circle.svg';
   static const String blue = '${_iconPath}blue_circle.svg';
   static const String purple = '${_iconPath}purple_circle.svg';
+
+  //home
+  static const String cup = '${_iconPath}cup.svg';
+  static const String food = '${_iconPath}food_bowl.svg';
+  static const String pot = '${_iconPath}pot.svg';
+  static const String man = '${_iconPath}running_man.svg';
 }

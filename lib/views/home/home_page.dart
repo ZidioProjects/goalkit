@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:goalkit/api/providers/login_provider.dart';
 import 'package:goalkit/resources/helpers/reuseable_widgets.dart';
@@ -7,6 +10,7 @@ import 'package:goalkit/resources/managers/color_manager.dart';
 import 'package:goalkit/resources/managers/image_manager.dart';
 import 'package:goalkit/resources/managers/string_manager.dart';
 import 'package:goalkit/resources/managers/styles_manager.dart';
+import 'package:goalkit/views/home/widget/tab_section.dart';
 import 'package:goalkit/views/profile_screen/profile.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +22,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool value = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,22 +39,19 @@ class _HomePageState extends State<HomePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text.rich(
-                          TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: StringManager.hi,
-                                  style: AppTextStyle.headerStyle.copyWith(
-                                      color: Colors.black),
-                                ),
-                                TextSpan(
-                                  text: loginProvider.loginResponse?.firstname ?? 'Senior',
-                                  style: AppTextStyle.headerStyle.copyWith(
-                                      color: Colors.black),
-                                ),
-                              ]
-                          )
-                      ),
+                      Text.rich(TextSpan(children: [
+                        TextSpan(
+                          text: StringManager.hi,
+                          style: AppTextStyle.headerStyle
+                              .copyWith(color: Colors.black),
+                        ),
+                        TextSpan(
+                          text: loginProvider.loginResponse?.firstname ??
+                              'Senior',
+                          style: AppTextStyle.headerStyle
+                              .copyWith(color: Colors.black),
+                        ),
+                      ])),
                       GestureDetector(
                         onTap: () {
                           Navigator.push(
@@ -71,39 +73,114 @@ class _HomePageState extends State<HomePage> {
                     StringManager.newDay,
                     style: AppTextStyle.bodyStyle16.copyWith(color: ash2Color),
                   ),
-                  const Gap(50),
-                  Center(
+                  const Gap(20),
+                  Container(
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Image.asset(
-                          ImageManager.pic1,
-                          width: 400,
-                          height: 200,
+                        TabBarSelector(),
+                        const Gap(10),
+                        Text(StringManager.task),
+                        const Gap(20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                SvgPicture.asset(ImageManager.pot),
+                                const Gap(20),
+                                Text(StringManager.mealPlan),
+                                const Gap(10),
+                                SvgPicture.asset(ImageManager.purple),
+                              ],
+                            ),
+                            const Gap(130),
+                            Checkbox(
+                              checkColor: primaryColor,
+                              value: this.value,
+                              onChanged: (bool? value) {
+                                setState(() {});
+                              },
+                            ),
+                          ],
                         ),
-                        const Gap(30),
-                        Text(
-                          StringManager.getStarted,
-                          style: AppTextStyle.headerMediumStyle.copyWith(
-                              color: Colors.black),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                SvgPicture.asset(ImageManager.cup),
+                                const Gap(20),
+                                Text(StringManager.stay),
+                                const Gap(10),
+                                SvgPicture.asset(ImageManager.blue),
+                              ],
+                            ),
+                            const Gap(100),
+                            Checkbox(
+                              checkColor: primaryColor,
+                              value: this.value,
+                              onChanged: (bool? value) {
+                                setState(() {});
+                              },
+                            ),
+                          ],
                         ),
-                        Text(
-                          StringManager.startWith,
-                          style: AppTextStyle.bodyStyle16.copyWith(
-                              color: ash3Color),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                SvgPicture.asset(ImageManager.food),
+                                const Gap(20),
+                                Text(StringManager.portion),
+                                const Gap(10),
+                                SvgPicture.asset(ImageManager.orange),
+                              ],
+                            ),
+                            const Gap(130),
+                            Checkbox(
+                              checkColor: primaryColor,
+                              value: this.value,
+                              onChanged: (bool? value) {
+                                setState(() {});
+                              },
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                SvgPicture.asset(ImageManager.man),
+                                const Gap(20),
+                                Text(StringManager.jog),
+                                const Gap(10),
+                                SvgPicture.asset(ImageManager.purple),
+                              ],
+                            ),
+                            const Gap(100),
+                            Checkbox(
+                              checkColor: primaryColor,
+                              value: this.value,
+                              onChanged: (bool? value) {
+                                setState(() {});
+                              },
+                            ),
+                          ],
                         ),
                       ],
                     ),
                   ),
-                  const Gap(100),
+                  const Gap(50),
                   Center(child: whiteButton('New Goal', 300))
                 ],
               ),
             ),
           );
-         }
-        ),
+        }),
       ),
-
     );
   }
 }

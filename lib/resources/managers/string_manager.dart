@@ -62,6 +62,17 @@ class StringManager {
   static const String whatActionPlan = 'What is your action plan?';
   static const String howOften = 'How often do you want to do this';
 
+  //home page
+  // static const String hydrate = "Stay hydrated";
+  // static const String control = "Control Portion";
+  static const String jog = "Go for a jog";
+  static const String task = 'Task for today';
+  static const String weekly = "Weekly Goals";
+  static const String monthly = "Monthly Goals";
+  static const String daysLeft = '9 days left';
+  static const String save = 'Save 50,000 daily';
+  static const String deadline = 'Deadline 31st May';
+
   //Analytics
   static const String goalsStats = 'Goal Stats';
   static const String noStats = 'No Goal Stats Available';
