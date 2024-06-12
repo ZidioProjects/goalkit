@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'api/providers/app_providers.dart';
 import 'views/settings_screen/change_password_screen.dart';
 
+
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();

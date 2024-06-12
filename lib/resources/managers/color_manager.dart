@@ -8,3 +8,4 @@ const ash4Color = Color(0xFFF5F5F5);
 const ash5Color = Color(0xFFB0B0B0);
 const ash6Color = Color(0xFFB0B0B0);
 const lineColor = Color(0xFFCCCCCC);
+const ashColor7 = Color(0xFF0ECFF);
