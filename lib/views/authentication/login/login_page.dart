@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -11,6 +10,7 @@ import 'package:goalkit/resources/managers/string_manager.dart';
 import 'package:goalkit/resources/managers/styles_manager.dart';
 import 'package:goalkit/resources/navigation/bottom_navigation.dart';
 import 'package:goalkit/views/authentication/signup/signup_page.dart';
+import 'package:goalkit/views/home/home_page.dart';
 import 'package:provider/provider.dart';
 
 import '../../forgot_password/forgot_password_screen.dart';
@@ -203,7 +203,9 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
                     const Gap(20),
-                    GestureDetector(onTap: () {}, child: googleButton())
+                    GestureDetector(onTap: () {
+                      loginProvider.googleLogin(context);
+                    }, child: googleButton())
                   ],
                 ),
               ),

@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+//import 'package:goalkit/l10n/localization_provider.dart';
 import 'package:goalkit/resources/managers/string_manager.dart';
 import 'package:goalkit/resources/managers/styles_manager.dart';
+import 'package:provider/provider.dart';
 
 import '../../resources/helpers/custom_textfield.dart';
 
@@ -24,7 +26,10 @@ class LanguageScreen extends StatelessWidget {
             children: [
               const Gap(40),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  //Provider.of<LocalizationProvider>(context, listen: false).setLocale(Locale('en'));
+                  Navigator.pop(context);
+                },
                 child: Container(
                   child: Text(
                     StringManager.eng,

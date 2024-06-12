@@ -25,6 +25,7 @@ class StringManager {
   static const String emailAddress = 'Email address';
   static const String password = 'Password';
   static const String enterSecure = 'Enter a secure password';
+  static const String confirmSecure = 'Confirm secure password';
   static const String forgotPass = 'Forgot password';
   static const String signGoogle = 'Sign in with Google';
   static const String alreadyHave = 'Already have an account? ';
@@ -61,6 +62,10 @@ class StringManager {
   static const String createActionPlan = 'Create action plan';
   static const String whatActionPlan = 'What is your action plan?';
   static const String howOften = 'How often do you want to do this';
+  static const String daily = 'Daily';
+  static const String weekly = 'Weekly';
+  static const String monthly = 'Monthly';
+  static const String createAction = 'Create Action';
 
   //home page
   // static const String hydrate = "Stay hydrated";
@@ -117,6 +122,8 @@ class StringManager {
   static const String change = 'Change Password';
   static const String current = 'Current Password';
   static const String newPas = 'New Password';
+  static const String confirmNewPass = 'Confirm New Password';
+  static const String confirmPass = 'Confirm Password';
   static const String enter = 'Enter your Password';
   static const String enterNew = 'Enter your new Password';
 
@@ -127,8 +134,7 @@ class StringManager {
 
   // reset link
   static const String reset = 'Reset link sent';
-  static const String passwordLink =
-      'Your password reset link has been\n sent to your email';
+  static const String passwordLink = 'Check your email';
   static const String open = 'Open Mail';
 
   //reset password
