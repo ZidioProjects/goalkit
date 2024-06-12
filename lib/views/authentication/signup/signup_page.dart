@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gap/gap.dart';
+import 'package:goalkit/api/providers/login_provider.dart';
 import 'package:goalkit/api/providers/signup_provider.dart';
 import 'package:goalkit/resources/helpers/custom_textfield.dart';
 import 'package:goalkit/resources/helpers/reuseable_widgets.dart';
@@ -20,6 +21,7 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   bool obscurePassword = true;
+  bool obscurePassword2 = true;
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -30,7 +32,7 @@ class _SignupPageState extends State<SignupPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Consumer<SignUpProvider>(builder: (ctx, signupProvider, child) {
+        child: Consumer2<SignUpProvider, LoginProvider>(builder: (ctx, signupProvider, loginProvider, child) {
           return SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -154,7 +156,40 @@ class _SignupPageState extends State<SignupPage> {
                         return null;
                       },
                     ),
-                    const Gap(40),
+                    const Gap(30),
+                    Text(
+                      StringManager.confirmPass,
+                      style: AppTextStyle.headerMediumStyle
+                          .copyWith(color: Colors.black),
+                    ),
+                    const Gap(10),
+                    CustomTextField(
+                        labelText: StringManager.confirmSecure,
+                        obscureText: obscurePassword2,
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              obscurePassword2 = !obscurePassword2;
+                            });
+                          },
+                          child: Icon(
+                            obscurePassword2
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Colors.black,
+                            size: 20,
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Confirm your Password';
+                          } else if (value != passwordController.text) {
+                            return 'Password does not match';
+                          } else {
+                            return null;
+                          }
+                        },
+                     ),
                     GestureDetector(
                         onTap: () async {
                           bool isValid = signupProvider
@@ -223,7 +258,9 @@ class _SignupPageState extends State<SignupPage> {
                       ],
                     ),
                     const Gap(20),
-                    GestureDetector(onTap: () {}, child: googleButton())
+                    GestureDetector(onTap: () {
+                      loginProvider.googleLogin(context);
+                    }, child: googleButton())
                   ],
                 ),
               ),

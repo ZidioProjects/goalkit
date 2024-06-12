@@ -214,7 +214,7 @@ class _NewGoalState extends State<NewGoal> {
                     ),
                     GestureDetector(
                       onTap: (){
-                        buildDialog(context);
+                       buildDialog(context);
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -275,7 +275,8 @@ class _NewGoalState extends State<NewGoal> {
                   ),
                 ),
                 const Gap(50),
-                blueButton(text: StringManager.createGoal)
+                blueButton(text: StringManager.createGoal),
+                const Gap(100)
               ],
             ),
           ),
@@ -284,107 +285,128 @@ class _NewGoalState extends State<NewGoal> {
     );
   }
 
-  buildDialog(BuildContext context) {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            contentPadding: EdgeInsets.zero,
-            backgroundColor: Colors.white,
-            shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-            content: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Gap(15),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        StringManager.createActionPlan,
-                        style: AppTextStyle.headerStyle20,
-                      ),
-                      const Spacer(),
-                      InkWell(
+  void buildDialog(BuildContext context) {
+    int _dialogValue = 1; // Local state for dialog
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return AlertDialog(
+              contentPadding: EdgeInsets.zero,
+              backgroundColor: Colors.white,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+              content: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Gap(15),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          StringManager.createActionPlan,
+                          style: AppTextStyle.headerStyle20,
+                        ),
+                        const Spacer(),
+                        InkWell(
                           onTap: () {
                             Navigator.pop(context);
                           },
-                          child: const Icon(Icons.close, size: 25, color: Colors.black,)),
-                    ],
-                  ),
-                  const Gap(25),
-                  Text(
-                    StringManager.whatActionPlan,
-                    style: AppTextStyle.bodyStyle14
-                        .copyWith(color: Colors.black),
-                  ),
-                  const Gap(10),
-                  const CustomTextField(
-                    hintText: 'I will....',
-                    borderColor: Colors.black,
-                    enabledBorderColor: Colors.black,
-                    focusedBorderColor: Colors.black,
-                  ),
-                  const Gap(20),
-                  Text(
-                    StringManager.howOften,
-                    style: AppTextStyle.bodyStyle14
-                        .copyWith(color: Colors.black),
-                  ),
-                  Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Radio(value: 1, groupValue: _value, onChanged: (value){
-                            setState(() {
-                              _value = value!;
-                            });
-                          }),
-                          const Gap(10),
-                          const Text(StringManager.daily,
-                          style: AppTextStyle.bodyStyle14,),
-
-                        ],
+                          child: const Icon(Icons.close, size: 25, color: Colors.black),
+                        ),
+                      ],
+                    ),
+                    const Gap(25),
+                    Text(
+                      StringManager.whatActionPlan,
+                      style: AppTextStyle.bodyStyle14.copyWith(color: Colors.black),
+                    ),
+                    const Gap(10),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'I will....',
                       ),
-                      Row(
-                        children: [
-                          Radio(value: 2, groupValue: _value, onChanged: (value){
-                            setState(() {
-                              _value = value!;
-                            });
-                          }),
-                          const Gap(10),
-                          const Text(StringManager.weekly,
-                            style: AppTextStyle.bodyStyle14,),
-
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Radio(value: 3, groupValue: _value, onChanged: (value){
-                            setState(() {
-                              _value = value!;
-                            });
-                          }),
-                          const Gap(10),
-                          const Text(StringManager.monthly,
-                            style: AppTextStyle.bodyStyle14,),
-                        ],
-                      )
-                    ],
-                  ),
-                  Center(
-                    child: blueButton(text: StringManager.createAction),
-                  )
-                ],
+                    ),
+                    const Gap(20),
+                    Text(
+                      StringManager.howOften,
+                      style: AppTextStyle.bodyStyle14.copyWith(color: Colors.black),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Radio(
+                              value: 1,
+                              groupValue: _dialogValue,
+                              onChanged: (value) {
+                                setState(() {
+                                  _dialogValue = value!;
+                                });
+                              },
+                            ),
+                            const Gap(10),
+                            const Text(
+                              StringManager.daily,
+                              style: AppTextStyle.bodyStyle14,
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Radio(
+                              value: 2,
+                              groupValue: _dialogValue,
+                              onChanged: (value) {
+                                setState(() {
+                                  _dialogValue = value!;
+                                });
+                              },
+                            ),
+                            const Gap(10),
+                            const Text(
+                              StringManager.weekly,
+                              style: AppTextStyle.bodyStyle14,
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Radio(
+                              value: 3,
+                              groupValue: _dialogValue,
+                              onChanged: (value) {
+                                setState(() {
+                                  _dialogValue = value!;
+                                });
+                              },
+                            ),
+                            const Gap(10),
+                            const Text(
+                              StringManager.monthly,
+                              style: AppTextStyle.bodyStyle14,
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    Center(
+                      child: blueButton(text: StringManager.createAction),
+                    )
+                  ],
+                ),
               ),
-            ),
-          );
-        });
+            );
+          },
+        );
+      },
+    );
   }
 }

@@ -25,6 +25,7 @@ class StringManager {
   static const String emailAddress = 'Email address';
   static const String password = 'Password';
   static const String enterSecure = 'Enter a secure password';
+  static const String confirmSecure = 'Confirm secure password';
   static const String forgotPass = 'Forgot password';
   static const String signGoogle = 'Sign in with Google';
   static const String alreadyHave = 'Already have an account? ';
@@ -111,6 +112,7 @@ class StringManager {
   static const String current = 'Current Password';
   static const String newPas = 'New Password';
   static const String confirmNewPass = 'Confirm New Password';
+  static const String confirmPass = 'Confirm Password';
   static const String enter = 'Enter your Password';
   static const String enterNew = 'Enter your new Password';
 
@@ -121,8 +123,7 @@ class StringManager {
 
   // reset link
   static const String reset = 'Reset link sent';
-  static const String passwordLink =
-      'Your password reset link has been\n sent to your email';
+  static const String passwordLink = 'Check your email';
   static const String open = 'Open Mail';
 
   //reset password

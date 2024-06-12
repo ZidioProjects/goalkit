@@ -4,6 +4,7 @@ import 'package:goalkit/resources/managers/image_manager.dart';
 import 'package:goalkit/resources/managers/string_manager.dart';
 import 'package:goalkit/resources/managers/styles_manager.dart';
 import 'package:goalkit/views/forgot_password/reset_password.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../resources/helpers/reuseable_widgets.dart';
 
@@ -34,8 +35,9 @@ class ResetLink extends StatelessWidget {
               const Gap(30),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ResetPassword()));
+                  _launchEmail();
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (context) => ResetPassword()));
                 },
                 child: blueButton(text: 'Open Mail'),
               ),
@@ -44,5 +46,15 @@ class ResetLink extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+void _launchEmail() async {
+  const email = 'mailto:';
+  final Uri emailUri = Uri.parse(email);
+  if (await canLaunchUrl(emailUri)) {
+    await launchUrl(emailUri);
+  } else {
+    throw 'Could not launch $email';
   }
 }

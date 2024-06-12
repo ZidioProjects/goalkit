@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:goalkit/api/providers/login_provider.dart';
 import 'package:goalkit/resources/helpers/reuseable_widgets.dart';
@@ -7,6 +8,7 @@ import 'package:goalkit/resources/managers/color_manager.dart';
 import 'package:goalkit/resources/managers/image_manager.dart';
 import 'package:goalkit/resources/managers/string_manager.dart';
 import 'package:goalkit/resources/managers/styles_manager.dart';
+import 'package:goalkit/views/home/new_goal.dart';
 import 'package:goalkit/views/profile_screen/profile.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +26,11 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Consumer<LoginProvider>(builder: (ctx, loginProvider, child) {
+          final displayName = loginProvider.userName.isNotEmpty
+              ? loginProvider.userName
+              : loginProvider.firstName.isNotEmpty
+              ? loginProvider.firstName
+              : 'User';
           return SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -40,24 +47,26 @@ class _HomePageState extends State<HomePage> {
                                 TextSpan(
                                   text: StringManager.hi,
                                   style: AppTextStyle.headerStyle.copyWith(
-                                      color: Colors.black),
+                                      color: Colors.black, fontSize: 20),
                                 ),
                                 TextSpan(
-                                  text: loginProvider.loginResponse?.firstname ?? 'Senior',
+                                  text: displayName,
                                   style: AppTextStyle.headerStyle.copyWith(
-                                      color: Colors.black),
+                                      color: Colors.black, fontSize: 20),
                                 ),
                               ]
                           )
                       ),
-                      GestureDetector(
+                      InkWell(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const Profile(),
-                            ),
-                          );
+                          try {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Profile()),
+                            );
+                          } catch (e) {
+                            print('Navigation Error: $e');
+                          }
                         },
                         child: Image.asset(
                           ImageManager.profilepic,
@@ -95,7 +104,15 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   const Gap(100),
-                  Center(child: whiteButton('New Goal', 300))
+                  GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const NewGoal()),
+                        );
+                      },
+                      child: Center(child: whiteButton('New Goal', 300)))
                 ],
               ),
             ),

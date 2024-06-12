@@ -8,8 +8,6 @@ class ForgotPasswordProvider extends ChangeNotifier {
   //Confirm password for changePassword
   GlobalKey<FormState> forgotPasswordFormKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
-  TextEditingController oldPasswordController = TextEditingController();
-  TextEditingController newPasswordController = TextEditingController();
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -34,7 +32,7 @@ class ForgotPasswordProvider extends ChangeNotifier {
 
         if (response.statusCode == 200) {
           _isLoading = false;
-          _message = "Password reset successfully";
+          _message = "Congratulations, password has been reset for this user and the recovered password sent to the associated mail";
           isUserPasswordReset = true;
           notifyListeners();
         } else {
