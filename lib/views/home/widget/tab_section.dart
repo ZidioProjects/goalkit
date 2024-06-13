@@ -16,10 +16,10 @@ class TabBarSelector extends StatelessWidget {
           indicatorWeight: 0.5,
           tabs: [
             Tab(
-              text: StringManager.weekly,
+              text: StringManager.weeklyGoals,
             ),
             Tab(
-              text: StringManager.monthly,
+              text: StringManager.monthlyGoals,
             )
           ],
         ),

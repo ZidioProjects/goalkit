@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
@@ -37,171 +35,192 @@ class _HomePageState extends State<HomePage> {
               : 'User';
           return SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Gap(40),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text.rich(
-                          TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: StringManager.hi,
-                                  style: AppTextStyle.headerStyle.copyWith(
-                                      color: Colors.black, fontSize: 20),
-                                ),
-                                TextSpan(
-                                  text: displayName,
-                                  style: AppTextStyle.headerStyle.copyWith(
-                                      color: Colors.black, fontSize: 20),
-                                ),
-                              ]
-                          )
-                      ),
-                      InkWell(
-                        onTap: () {
-                          try {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => Profile()),
-                            );
-                          } catch (e) {
-                            print('Navigation Error: $e');
-                          }
-                        },
-                        child: Image.asset(
-                          ImageManager.profilepic,
-                          width: 30,
-                          height: 30,
-                        ),
-                      )
-                    ],
-                  ),
-                  Text(
-                    StringManager.newDay,
-                    style: AppTextStyle.bodyStyle16.copyWith(color: ash2Color),
-                  ),
-                  const Gap(20),
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Gap(30),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        TabBarSelector(),
-                        const Gap(10),
-                        Text(StringManager.task),
-                        const Gap(20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                SvgPicture.asset(ImageManager.pot),
-                                const Gap(20),
-                                Text(StringManager.mealPlan),
-                                const Gap(10),
-                                SvgPicture.asset(ImageManager.purple),
-                              ],
-                            ),
-                            const Gap(130),
-                            Checkbox(
-                              checkColor: primaryColor,
-                              value: this.value,
-                              onChanged: (bool? value) {
-                                setState(() {});
-                              },
-                            ),
-                          ],
+                        Text.rich(
+                            TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: StringManager.hi,
+                                    style: AppTextStyle.headerStyle.copyWith(
+                                        color: Colors.black, fontSize: 20),
+                                  ),
+                                  TextSpan(
+                                    text: displayName,
+                                    style: AppTextStyle.headerStyle.copyWith(
+                                        color: Colors.black, fontSize: 20),
+                                  ),
+                                ]
+                            )
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                SvgPicture.asset(ImageManager.cup),
-                                const Gap(20),
-                                Text(StringManager.stay),
-                                const Gap(10),
-                                SvgPicture.asset(ImageManager.blue),
-                              ],
-                            ),
-                            const Gap(100),
-                            Checkbox(
-                              checkColor: primaryColor,
-                              value: this.value,
-                              onChanged: (bool? value) {
-                                setState(() {});
-                              },
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                SvgPicture.asset(ImageManager.food),
-                                const Gap(20),
-                                Text(StringManager.portion),
-                                const Gap(10),
-                                SvgPicture.asset(ImageManager.orange),
-                              ],
-                            ),
-                            const Gap(130),
-                            Checkbox(
-                              checkColor: primaryColor,
-                              value: this.value,
-                              onChanged: (bool? value) {
-                                setState(() {});
-                              },
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                SvgPicture.asset(ImageManager.man),
-                                const Gap(20),
-                                Text(StringManager.jog),
-                                const Gap(10),
-                                SvgPicture.asset(ImageManager.purple),
-                              ],
-                            ),
-                            const Gap(100),
-                            Checkbox(
-                              checkColor: primaryColor,
-                              value: this.value,
-                              onChanged: (bool? value) {
-                                setState(() {});
-                              },
-                            ),
-                          ],
-                        ),
+                        InkWell(
+                          onTap: () {
+                            //Profile().launch(context);
+                            try {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(builder: (context) => Profile()),
+                              );
+                            } catch (e) {
+                              print('Navigation Error: $e');
+                            }
+                          },
+                          child: Image.asset(
+                            ImageManager.profilepic,
+                            width: 30,
+                            height: 30,
+                          ),
+                        )
                       ],
                     ),
-                  ),
-                  const Gap(50),
-                  Center(child: whiteButton('New Goal', 300))
-                  const Gap(100),
-                  GestureDetector(
-                      onTap: (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const NewGoal()),
-                        );
-                      },
-                      child: Center(child: whiteButton('New Goal', 300)))
-                ],
-              ),
+                    Text(
+                      StringManager.newDay,
+                      style: AppTextStyle.bodyStyle16.copyWith(color: ash2Color),
+                    ),
+                    const Gap(20),
+                    Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TabBarSelector(),
+                          const Gap(10),
+                          Text(StringManager.task),
+                          const Gap(20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  SvgPicture.asset(ImageManager.pot),
+                                  const Gap(20),
+                                  Text(StringManager.mealPlan),
+                                  const Gap(10),
+                                  SvgPicture.asset(ImageManager.purple),
+                                ],
+                              ),
+                              //const Gap(130),
+                              Checkbox(
+                                checkColor: primaryColor,
+                                value: this.value,
+                                onChanged: (bool? value) {
+                                  setState(() {});
+                                },
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  SvgPicture.asset(ImageManager.cup),
+                                  const Gap(20),
+                                  Text(StringManager.stay),
+                                  const Gap(10),
+                                  SvgPicture.asset(ImageManager.blue),
+                                ],
+                              ),
+                              const Gap(100),
+                              Checkbox(
+                                checkColor: primaryColor,
+                                value: this.value,
+                                onChanged: (bool? value) {
+                                  setState(() {});
+                                },
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  SvgPicture.asset(ImageManager.food),
+                                  const Gap(20),
+                                  Text(StringManager.portion),
+                                  const Gap(10),
+                                  SvgPicture.asset(ImageManager.orange),
+                                ],
+                              ),
+                              //const Gap(130),
+                              Checkbox(
+                                checkColor: primaryColor,
+                                value: this.value,
+                                onChanged: (bool? value) {
+                                  setState(() {});
+                                },
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  SvgPicture.asset(ImageManager.man),
+                                  const Gap(20),
+                                  Text(StringManager.jog),
+                                  const Gap(10),
+                                  SvgPicture.asset(ImageManager.purple),
+                                ],
+                              ),
+                              const Gap(100),
+                              Checkbox(
+                                checkColor: primaryColor,
+                                value: this.value,
+                                onChanged: (bool? value) {
+                                  setState(() {});
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Gap(50),
+                    GestureDetector(
+                        onTap: (){
+                          //const NewGoal().launch(context);
+                        },
+                        child: Align(alignment: Alignment.bottomCenter,
+                            child: Center(child: whiteButton('New Goal', 300))))
+                  ],
+                ),
             ),
           );
         }),
       ),
     );
   }
+
+  Widget noGoals(){
+    return Center(
+      child: Column(
+        children: [
+          Image.asset(
+            ImageManager.pic1,
+            width: 400,
+            height: 200,
+          ),
+          const Gap(30),
+          Text(
+            StringManager.getStarted,
+            style: AppTextStyle.headerMediumStyle.copyWith(
+                color: Colors.black),
+          ),
+          Text(
+            StringManager.startWith,
+            style: AppTextStyle.bodyStyle16.copyWith(
+                color: ash3Color),
+          ),
+        ],
+      ),
+    );
+  }
+
 }
