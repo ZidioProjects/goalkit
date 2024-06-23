@@ -12,16 +12,32 @@ import 'package:goalkit/views/profile_screen/reward.dart';
 import 'package:provider/provider.dart';
 import '../../resources/helpers/options.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
   const Profile({
     super.key,
   });
+
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       body: Consumer<LoginProvider>(builder: (ctx, loginProvider, child) {
+        final displayName = loginProvider.userName.isNotEmpty
+            ? loginProvider.userName
+            : loginProvider.firstName.isNotEmpty
+            ? '${loginProvider.loginResponse?.firstname} ${loginProvider.loginResponse?.lastname}'
+            : 'User';
+        final email = loginProvider.email.isNotEmpty
+            ? loginProvider.email
+            : loginProvider.loginEmail.isNotEmpty
+            ? loginProvider.loginEmail
+            : 'User';
         return SafeArea(
           child: Container(
             margin: EdgeInsets.symmetric(horizontal: 20),
@@ -65,11 +81,11 @@ class Profile extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  '${loginProvider.loginResponse?.firstname} ${loginProvider.loginResponse?.lastname} ',
+                                  displayName,
                                   style: AppTextStyle.profileStyle1,
                                 ),
                                 Text(
-                                  loginProvider.loginResponse?.email ?? 'useremail@gmail.com',
+                                  email,
                                   style: AppTextStyle.bodyStyle14,
                                 ),
                               ],
@@ -109,25 +125,25 @@ class Profile extends StatelessWidget {
                 const Gap(20),
 
                 // motivation container
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12),
-                  width: 342,
-                  height: 130,
-                  color: Colors.white,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        StringManager.myMotivation,
-                        style: AppTextStyle.profileStyle1,
-                      ),
-                      Text(
-                        StringManager.lorem2,
-                        style: AppTextStyle.bodyStyle13,
-                      ),
-                    ],
-                  ),
-                ),
+                // Container(
+                //   padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12),
+                //   width: 342,
+                //   height: 130,
+                //   color: Colors.white,
+                //   child: Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Text(
+                //         StringManager.myMotivation,
+                //         style: AppTextStyle.profileStyle1,
+                //       ),
+                //       Text(
+                //         StringManager.lorem2,
+                //         style: AppTextStyle.bodyStyle13,
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 const Gap(20),
 
                 //options container

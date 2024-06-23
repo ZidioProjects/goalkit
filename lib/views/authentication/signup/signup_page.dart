@@ -10,6 +10,7 @@ import 'package:goalkit/resources/managers/color_manager.dart';
 import 'package:goalkit/resources/managers/string_manager.dart';
 import 'package:goalkit/resources/managers/styles_manager.dart';
 import 'package:goalkit/views/authentication/login/login_page.dart';
+import 'package:goalkit/views/home/home_page.dart';
 import 'package:provider/provider.dart';
 
 class SignupPage extends StatefulWidget {
@@ -190,6 +191,7 @@ class _SignupPageState extends State<SignupPage> {
                           }
                         },
                      ),
+                    const Gap(40),
                     GestureDetector(
                         onTap: () async {
                           bool isValid = signupProvider
@@ -211,6 +213,7 @@ class _SignupPageState extends State<SignupPage> {
                               passwordController.clear();
                               firstNameController.clear();
                               lastNameController.clear();
+                              signupProvider.signupFormKey.currentState?.dispose();
                             } else {
                               Fluttertoast.showToast(
                                   msg: signupProvider.message,
@@ -224,7 +227,7 @@ class _SignupPageState extends State<SignupPage> {
                         },
                         child: blueButton(
                             text: signupProvider.isLoading
-                                ? 'Creating Account'
+                                ? 'Creating Account...'
                                 : 'Create Account')),
                     const Gap(20),
                     Row(
@@ -260,7 +263,8 @@ class _SignupPageState extends State<SignupPage> {
                     const Gap(20),
                     GestureDetector(onTap: () {
                       loginProvider.googleLogin(context);
-                    }, child: googleButton())
+                    }, child: googleButton()),
+                    const Gap(60),
                   ],
                 ),
               ),

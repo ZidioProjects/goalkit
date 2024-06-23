@@ -85,8 +85,7 @@ class StringManager {
   //profile page
   static const String userName = 'James Floyd';
   static const String userEmail = 'jamesfloyd@gmail.com';
-  static const String lorem =
-      'Lorem ipsum dolor sit amet consectetur. Amet ut nulla velit amet. Neque neque morbi tempor tincidunt. ';
+  static const String lorem = 'A great day to help you organize your tasks';
   static const String editProfile = 'Edit Profile';
   static const String myMotivation = 'My Motivation';
   static const String lorem2 =

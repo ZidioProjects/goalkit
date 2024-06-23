@@ -43,9 +43,9 @@ class SignUpProvider with ChangeNotifier {
         }),
       );
 
-      final responseData = jsonDecode(response.body);
 
       if (response.statusCode == 200) {
+        _isLoading = false;
         final responseData = jsonDecode(response.body);
         print('SignUpResponse: $responseData');
         isAccountCreated = true;

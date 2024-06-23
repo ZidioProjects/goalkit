@@ -16,8 +16,17 @@ class LoginProvider with ChangeNotifier {
   String _firstName = "";
   String get firstName => _firstName;
 
+  String _lastName = "";
+  String get lastName => _lastName;
+
   String _userName = "";
   String get userName => _userName;
+
+  String _email = "";
+  String get email => _email;
+
+  String _loginEmail = "";
+  String get loginEmail => _loginEmail;
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -48,11 +57,14 @@ class LoginProvider with ChangeNotifier {
     if (user != null) {
       _userName = user.displayName ?? '';
       _firstName = user.email ?? '';
+      _lastName = user.email ?? '';
+      _email = user.email ?? '';
+      _loginEmail = user.email ?? '';
       notifyListeners();
     }
   }
 
-  Future<void> _saveLoginState({String? userName, String? firstName}) async {
+  Future<void> _saveLoginState({String? userName, String? firstName, String? lastName, String? email, String? loginEmail}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool('isLoggedIn', true);
     if (userName != null) {
@@ -61,6 +73,15 @@ class LoginProvider with ChangeNotifier {
     if (firstName != null) {
       await prefs.setString('firstName', firstName);
     }
+    if (lastName != null) {
+      await prefs.setString('lastName', lastName);
+    }
+    if (email != null) {
+      await prefs.setString('email', email);
+    }
+    if (loginEmail != null) {
+      await prefs.setString('loginEmail', loginEmail);
+    }
   }
 
   Future<void> _clearLoginState() async {
@@ -68,6 +89,9 @@ class LoginProvider with ChangeNotifier {
     await prefs.remove('isLoggedIn');
     await prefs.remove('userName');
     await prefs.remove('firstName');
+    await prefs.remove('lastName');
+    await prefs.remove('email');
+    await prefs.remove('loginEmail');
   }
 
   Future<bool> loginUser({required String email, required String password}) async {
@@ -91,14 +115,18 @@ class LoginProvider with ChangeNotifier {
         body: jsonEncode({'email': email, 'password': password}),
         headers: {'Content-Type': 'application/json'},
       );
-
-      if (response.statusCode == 200) {
+      final responseData = jsonDecode(response.body);
+      loginResponse = LoginResponse.fromJson(responseData);
+      if (response.statusCode == 200 && loginResponse?.status == true) {
         _isLoading = false;
         final responseData = jsonDecode(response.body);
         loginResponse = LoginResponse.fromJson(responseData);
         _firstName = loginResponse?.firstname ?? 'User';
+        _lastName = loginResponse?.lastname ?? 'User';
+        _loginEmail = loginResponse?.email ?? 'useremail@gmail.com';
         await _saveLoginState(firstName: _firstName);
-        await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+        await _saveLoginState(firstName: _lastName);
+        await _saveLoginState(firstName: _loginEmail);
         isUserLoggedIn = true;
         notifyListeners();
       } else {
@@ -139,7 +167,9 @@ class LoginProvider with ChangeNotifier {
 
       // Fetch user name from Google account
       _userName = userCredential.user?.displayName ?? 'User';
+      _email = userCredential.user?.email ?? 'useremail@gmail.com';
       await _saveLoginState(userName: _userName);
+      await _saveLoginState(email: _email);
       notifyListeners();
 
       // Navigate to the HomePage
@@ -177,6 +207,10 @@ class LoginProvider with ChangeNotifier {
     FirebaseAuth.instance.signOut();
     _firstName = '';
     _userName = '';
+    _lastName = '';
+    _email = '';
+    _loginEmail = '';
+    loginFormKey.currentState?.dispose();
     await _clearLoginState();
     notifyListeners();
   }

@@ -33,6 +33,7 @@ class _CategoryPageState extends State<CategoryPage> {
                       StringManager.goalsG,
                       style: AppTextStyle.headerStyle.copyWith(
                         color: Colors.black,
+                        fontSize: 20
                       ),
                     ),
                     GestureDetector(

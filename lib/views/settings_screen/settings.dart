@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:goalkit/api/providers/login_provider.dart';
 import 'package:goalkit/resources/managers/image_manager.dart';
 import 'package:goalkit/resources/managers/string_manager.dart';
+import 'package:goalkit/views/authentication/login/login_page.dart';
 import 'package:goalkit/views/settings_screen/change_password_screen.dart';
 import 'package:goalkit/views/settings_screen/language_screen.dart';
 import 'package:provider/provider.dart';
@@ -13,8 +14,16 @@ import 'package:provider/provider.dart';
 import '../../resources/managers/color_manager.dart';
 import '../../resources/managers/styles_manager.dart';
 
-class SettingsPage extends StatelessWidget {
+class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
+
+  @override
+  State<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
+
+  bool _isSwitchOn = false;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +36,16 @@ class SettingsPage extends StatelessWidget {
       //   ),
       // ),
       body: Consumer<LoginProvider>(builder: (ctx, loginProvider, child) {
+        final displayName = loginProvider.userName.isNotEmpty
+            ? loginProvider.userName
+            : loginProvider.firstName.isNotEmpty
+            ? '${loginProvider.loginResponse?.firstname} ${loginProvider.loginResponse?.lastname}'
+            : 'User';
+        final email = loginProvider.email.isNotEmpty
+            ? loginProvider.email
+            : loginProvider.loginEmail.isNotEmpty
+            ? loginProvider.loginEmail
+            : 'User';
         return SafeArea(
           child: SingleChildScrollView(
             child: Padding(
@@ -38,7 +57,9 @@ class SettingsPage extends StatelessWidget {
                   Text(
                     StringManager.settings,
                     style: AppTextStyle.headerStyle.copyWith(
-                        color: Colors.black),
+                        color: Colors.black,
+                        fontSize: 20
+                    ),
                   ),
                   const Gap(20),
                   Container(
@@ -64,11 +85,11 @@ class SettingsPage extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '${loginProvider.loginResponse?.firstname} ${loginProvider.loginResponse?.lastname} ',
+                                    displayName,
                                     style: AppTextStyle.profileStyle1,
                                   ),
                                   Text(
-                                    loginProvider.loginResponse?.email ?? 'useremail@gmail.com',
+                                    email,
                                     style: AppTextStyle.bodyStyle14,
                                   ),
                                 ],
@@ -91,8 +112,12 @@ class SettingsPage extends StatelessWidget {
                   SettingsOptions(
                     text: StringManager.notification,
                     icon: Switch(
-                      value: true,
-                      onChanged: (value) {},
+                      value: _isSwitchOn, // Use the state variable
+                      onChanged: (value) {
+                        setState(() {
+                          _isSwitchOn = value; // Update the state
+                        });
+                      },
                       activeTrackColor: primaryColor,
                     ),
                   ),
@@ -120,6 +145,20 @@ class SettingsPage extends StatelessWidget {
                     },
                     child: SettingsOptions(
                         text: StringManager.password,
+                        icon: SvgPicture.asset(ImageManager.forwardArrow)),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      loginProvider.logout();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginPage(),
+                        ),
+                      );
+                    },
+                    child: SettingsOptions(
+                        text: 'Log out',
                         icon: SvgPicture.asset(ImageManager.forwardArrow)),
                   )
                 ],

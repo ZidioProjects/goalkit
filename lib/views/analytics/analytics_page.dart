@@ -35,6 +35,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                       StringManager.goalsStats,
                       style: AppTextStyle.headerStyle.copyWith(
                         color: Colors.black,
+                        fontSize: 20
                       ),
                     ),
                     GestureDetector(
