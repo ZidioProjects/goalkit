@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:goalkit/resources/managers/color_manager.dart';
 import 'package:goalkit/resources/managers/image_manager.dart';
-import 'package:goalkit/views/analytics/analytics_page.dart';
 import 'package:goalkit/views/category/category_page.dart';
-import 'package:goalkit/views/home/home_page.dart';
+import 'package:goalkit/views/home/new_goal.dart';
 import 'package:goalkit/views/settings_screen/settings.dart';
 
 class Nav extends StatefulWidget {
   final int currentIndex;
-  const Nav({Key? key, this.currentIndex = 0}) : super(key: key);
+  const Nav({super.key, this.currentIndex = 0});
 
   @override
   State<Nav> createState() => _NavState();
@@ -17,9 +16,8 @@ class Nav extends StatefulWidget {
 class _NavState extends State<Nav> {
   late int _currentIndex;
   final List<Widget> _children = [
-    const HomePage(),
-    const AnalyticsPage(),
     const CategoryPage(),
+    const NewGoal(),
     const SettingsPage(),
   ];
 
@@ -35,7 +33,7 @@ class _NavState extends State<Nav> {
     return Scaffold(
       body: IndexedStack(index: _currentIndex, children: _children),
       bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(30),
           child: BottomNavigationBar(
@@ -47,37 +45,26 @@ class _NavState extends State<Nav> {
             items: [
               BottomNavigationBarItem(
                   icon: Padding(
-                      padding: EdgeInsets.only(top: 10),
+                      padding: const EdgeInsets.only(top: 10),
                       child: Image.asset(
                         ImageManager.homeIcon,
-                        width: 20,
-                        height: 20,
+                        width: 18,
+                        height: 18,
+                        color: Colors.white,
+                      )),
+                  label: ''),
+              const BottomNavigationBarItem(
+                  icon: Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Icon(
+                        Icons.edit_note_sharp,
+                        size: 25,
                         color: Colors.white,
                       )),
                   label: ''),
               BottomNavigationBarItem(
                   icon: Padding(
-                      padding: EdgeInsets.only(top: 10),
-                      child: Image.asset(
-                        ImageManager.statsIcon,
-                        width: 20,
-                        height: 20,
-                        color: Colors.white,
-                      )),
-                  label: ''),
-              BottomNavigationBarItem(
-                  icon: Padding(
-                      padding: EdgeInsets.only(top: 10),
-                      child: Image.asset(
-                        ImageManager.folderIcon,
-                        width: 20,
-                        height: 20,
-                        color: Colors.white,
-                      )),
-                  label: ''),
-              BottomNavigationBarItem(
-                  icon: Padding(
-                      padding: EdgeInsets.only(top: 10),
+                      padding: const EdgeInsets.only(top: 10),
                       child: Image.asset(
                         ImageManager.settingsIcon,
                         width: 20,

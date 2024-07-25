@@ -10,7 +10,6 @@ import 'package:goalkit/resources/managers/color_manager.dart';
 import 'package:goalkit/resources/managers/string_manager.dart';
 import 'package:goalkit/resources/managers/styles_manager.dart';
 import 'package:goalkit/views/authentication/login/login_page.dart';
-import 'package:goalkit/views/home/home_page.dart';
 import 'package:provider/provider.dart';
 
 class SignupPage extends StatefulWidget {

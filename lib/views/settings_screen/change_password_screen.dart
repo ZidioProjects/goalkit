@@ -25,7 +25,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.arrow_back_ios),
         title: const Text(
           StringManager.change,
           style: AppTextStyle.headerStyle20,

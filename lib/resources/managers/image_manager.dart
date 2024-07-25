@@ -9,8 +9,6 @@ class ImageManager {
   static const String onboardPic = "$imagePath/onboard1.png";
   static const String onboardArrow = "$imagePath/on_arrow.png";
 
-  //login and signup
-
   //home
   static const String homeIcon = "$imagePath/home.png";
   static const String statsIcon = "$imagePath/stats.png";

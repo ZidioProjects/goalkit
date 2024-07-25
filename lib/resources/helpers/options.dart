@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:goalkit/resources/managers/image_manager.dart';
-
 import '../managers/styles_manager.dart';
-
-//widget used in the profile
 
 class Options extends StatelessWidget {
   const Options(
@@ -20,7 +17,6 @@ class Options extends StatelessWidget {
       children: [
         Text(
           text,
-          // StringManager.goalStreak,
           style: AppTextStyle.bodyStyle14,
         ),
         Row(

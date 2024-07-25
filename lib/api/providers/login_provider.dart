@@ -175,7 +175,7 @@ class LoginProvider with ChangeNotifier {
       // Navigate to the HomePage
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Nav()),
+        MaterialPageRoute(builder: (context) => const Nav()),
       );
     } catch (error) {
       // Handle errors appropriately
@@ -184,11 +184,11 @@ class LoginProvider with ChangeNotifier {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Login Failed'),
-            content: Text("An error occurred. Please try again"),
+            title: const Text('Login Failed'),
+            content: const Text("An error occurred. Please try again"),
             actions: <Widget>[
               TextButton(
-                child: Text('OK'),
+                child: const Text('OK'),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },

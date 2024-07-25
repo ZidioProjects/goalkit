@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_switch/flutter_switch.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gap/gap.dart';
-import 'package:goalkit/resources/helpers/custom_textfield.dart';
+import 'package:goalkit/api/providers/goals_category_provider.dart';
+import 'package:goalkit/api/providers/login_provider.dart';
 import 'package:goalkit/resources/helpers/reuseable_widgets.dart';
 import 'package:goalkit/resources/managers/color_manager.dart';
 import 'package:goalkit/resources/managers/image_manager.dart';
 import 'package:goalkit/resources/managers/string_manager.dart';
 import 'package:goalkit/resources/managers/styles_manager.dart';
-import 'package:goalkit/resources/managers/values_manager.dart';
+import 'package:provider/provider.dart';
 
 class NewGoal extends StatefulWidget {
   const NewGoal({super.key});
@@ -18,395 +19,268 @@ class NewGoal extends StatefulWidget {
 }
 
 class _NewGoalState extends State<NewGoal> {
-  var valueList = ['Health', 'Work', 'Personal'];
-  String dropdownValue = 'Health';
+
+  final _categoryController = TextEditingController();
+  final _taskTitleController = TextEditingController();
+  final _affirmationController = TextEditingController();
+  final _tagController = TextEditingController();
+
+  var valueList = [
+    'Health', 'Work', 'Personal',
+    'Faith', 'Sports', 'Motivation', 'Relationship',
+    'Food', 'Inspiration', 'Spiritual', 'Finance',
+    'Family', 'Love', 'Business', 'Education', 'others'];
 
   var valueList1 = ['Add Tag', 'High Priority', 'Low Priority', 'No Priority'];
-  String dropdownValue1 = 'Add Tag';
 
-  bool status = false;
-
-  List options = ['Option 1', 'Option 2', 'Option 3'];
-  int _value = 1;
+  @override
+  void initState() {
+    super.initState();
+    _categoryController.text = 'Health'; // Set a default value
+    _tagController.text = 'Add Tag';
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Transform.scale(
-                scale: 0.2,
-                child: SvgPicture.asset(
-                  ImageManager.backwardArrow,
-                ))),
-        title: const Text(StringManager.createNew,
+          title: const Text(StringManager.createNew,
             style: AppTextStyle.headerStyle20),
         centerTitle: true,
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: StringManager.wantAchieve,
-                    hintStyle:
-                        AppTextStyle.headerMediumStyle.copyWith(fontSize: 20, color: ash6Color),
-                    border: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    contentPadding: EdgeInsets.zero,
-                  ),
-                ),
-                const Gap(30),
-                Row(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          border: Border.all(color: Colors.black, width: 1)),
-                      height: 30,
-                      child: Center(
-                        child: DropdownButton(
-                          items: valueList.map((String item) {
-                            return DropdownMenuItem(
-                                value: item,
-                                child: Text(item,
-                                    style: AppTextStyle.bodyStyle16
-                                        .copyWith(color: Colors.black)));
-                          }).toList(),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              dropdownValue = newValue!;
-                            });
-                          },
-                          value: dropdownValue,
-                          borderRadius: BorderRadius.circular(10),
-                          icon: Icon(Icons.keyboard_arrow_down,
-                              color: Colors.black.withOpacity(0.9)),
-                          iconSize: 20,
-                          underline: Container(),
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                        ),
-                      ),
-                    ),
-                    const Gap(20),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.access_time,
-                          color: Colors.black,
-                          size: 20,
-                        ),
-                        const Gap(10),
-                        Text(
-                          StringManager.chooseDuration,
-                          style: AppTextStyle.bodyStyle16
-                              .copyWith(color: Colors.black),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-                const Gap(20),
-                Container(
-                  width: 120,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      border: Border.all(color: Colors.black, width: 1)),
-                  height: 30,
-                  child: Center(
-                    child: DropdownButton(
-                      items: valueList1.map((String item) {
-                        return DropdownMenuItem(
-                            value: item,
-                            child: Text(item,
-                                style: AppTextStyle.bodyStyle16
-                                    .copyWith(color: Colors.black)));
-                      }).toList(),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          dropdownValue1 = newValue!;
-                        });
-                      },
-                      value: dropdownValue1,
-                      borderRadius: BorderRadius.circular(10),
-                      icon: Container(),
-                      underline: Container(),
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                    ),
-                  ),
-                ),
-                const Gap(30),
-                Text(
-                  StringManager.affirm,
-                  style: AppTextStyle.bodyStyle16.copyWith(
-                    color: Colors.black,
-                  ),
-                ),
-                const Gap(30),
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: ash2Color, width: 1)),
-                  child: const TextField(
-                    maxLines: 6,
+        child: Consumer2<GoalsAndCategoryProvider, LoginProvider>(builder: (ctx, goalsAndCategoryProvider, loginProvider, child) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextFormField(
+                    controller: _taskTitleController,
+                    style: AppTextStyle.bodyStyle16.copyWith(color: Colors.black, fontSize: 18),
                     decoration: InputDecoration(
+                      hintText: StringManager.wantAchieve,
+                      hintStyle: AppTextStyle.headerMediumStyle.copyWith(
+                          fontSize: 20, color: ash6Color),
                       border: InputBorder.none,
-                      hintText: StringManager.whySetting,
-                      hintStyle: AppTextStyle.bodyStyle14,
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      contentPadding: EdgeInsets.zero,
                     ),
                   ),
-                ),
-                const Gap(30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.access_time,
-                          color: Colors.black,
-                          size: 20,
-                        ),
-                        const Gap(5),
-                        Text(
-                          StringManager.remind,
-                          style: AppTextStyle.bodyStyle16
-                              .copyWith(color: Colors.black),
-                        )
-                      ],
+                  const Gap(30),
+                  Text(
+                    StringManager.chooseCategory,
+                    style: AppTextStyle.bodyStyle16.copyWith(
+                      color: Colors.black,
                     ),
-                    FlutterSwitch(
-                      activeColor: primaryColor,
-                      width: 40.0,
-                      height: 25.0,
-                      valueFontSize: 25.0,
-                      toggleSize: 30.0,
-                      value: status,
-                      borderRadius: 30.0,
-                      padding: 4.0,
-                      onToggle: (val) {
-                        setState(() {
-                          status = val;
-                        });
-                      },
-                    )
-                  ],
-                ),
-                const Gap(30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      StringManager.action,
-                      style: AppTextStyle.bodyStyle16.copyWith(
-                        color: Colors.black,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: (){
-                       buildDialog(context);
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                        clipBehavior: Clip.antiAlias,
+                  ),
+                  const Gap(10),
+                  Row(
+                    children: [
+                      Container(
                         decoration: BoxDecoration(
-                            color: Colors.white,
                             borderRadius: BorderRadius.circular(100),
-                            border: Border.all(
-                                color: primaryColor,
-                                width: 1
-                            )
-                        ),
+                            border: Border.all(color: Colors.black, width: 1)),
+                        height: 30,
                         child: Center(
-                          child: Row(
-                            children: [
-                              const Icon(Icons.add, size: 20, color: primaryColor,),
-                              Text(
-                                StringManager.addAction,
-                                textAlign: TextAlign.center,
-                                style: AppTextStyle.bodyStyle14.copyWith(
-                                    color: primaryColor
-                                ),
-                              ),
-                            ],
+                          child: DropdownButton<String>(
+                            items: valueList.map((String item) {
+                              return DropdownMenuItem<String>(
+                                  value: item,
+                                  child: Text(item,
+                                      style: AppTextStyle.bodyStyle16
+                                          .copyWith(color: Colors.black)));
+                            }).toList(),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                _categoryController.text = newValue!;
+                              });
+                            },
+                            value: _categoryController.text,
+                            borderRadius: BorderRadius.circular(10),
+                            icon: Icon(Icons.keyboard_arrow_down,
+                                color: Colors.black.withOpacity(0.9)),
+                            iconSize: 20,
+                            underline: Container(),
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
                           ),
                         ),
                       ),
-                    )
-                  ],
-                ),
-                const Gap(30),
-                Text(
-                  StringManager.uploadDoc,
-                  style: AppTextStyle.bodyStyle16
-                      .copyWith(color: Colors.black),
-                ),
-                const Gap(10),
-                Container(
-                  width: logicalWidth(),
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(100),
-                      border: Border.all(
-                          color: primaryColor,
-                          width: 1
-                      )
+                    ],
                   ),
-                  child: Center(
-                    child: Text(
-                      StringManager.tagDoc,
-                      textAlign: TextAlign.center,
-                      style: AppTextStyle.bodyStyle14.copyWith(
-                          color: primaryColor
-                      ),
-                    ),
-                  ),
-                ),
-                const Gap(50),
-                blueButton(text: StringManager.createGoal),
-                const Gap(100)
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  void buildDialog(BuildContext context) {
-    int _dialogValue = 1; // Local state for dialog
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return StatefulBuilder(
-          builder: (BuildContext context, StateSetter setState) {
-            return AlertDialog(
-              contentPadding: EdgeInsets.zero,
-              backgroundColor: Colors.white,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-              content: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Gap(15),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          StringManager.createActionPlan,
-                          style: AppTextStyle.headerStyle20,
-                        ),
-                        const Spacer(),
-                        InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
+                  const Gap(20),
+                  GestureDetector(
+                    onTap: () async {
+                      bool isSubmitted =
+                      await goalsAndCategoryProvider.addGoalCategory(
+                        categoryName: _categoryController.text,
+                      );
+                      if (isSubmitted == true) {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: const Text('Category Created!!'),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: const Text('Continue'),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
                           },
-                          child: const Icon(Icons.close, size: 25, color: Colors.black),
+                        );
+                      } else {
+                        Fluttertoast.showToast(
+                            msg: goalsAndCategoryProvider.message,
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            backgroundColor: Colors.black87,
+                            textColor: Colors.white,
+                            fontSize: 16.0);
+                      }
+                    },
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 5),
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                              color: primaryColor,
+                              borderRadius: BorderRadius.circular(100),
+                              border: Border.all(
+                                  color: primaryColor,
+                                  width: 1
+                              )
+                          ),
+                          child: Center(
+                            child: Row(
+                              children: [
+                                Text(
+                                  StringManager.submit,
+                                  textAlign: TextAlign.center,
+                                  style: AppTextStyle.bodyStyle14.copyWith(
+                                      color: Colors.white
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ],
                     ),
-                    const Gap(25),
-                    Text(
-                      StringManager.whatActionPlan,
-                      style: AppTextStyle.bodyStyle14.copyWith(color: Colors.black),
+                  ),
+                  const Gap(30),
+                  Text(
+                    StringManager.chooseTag,
+                    style: AppTextStyle.bodyStyle16.copyWith(
+                      color: Colors.black,
                     ),
-                    const Gap(10),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'I will....',
+                  ),
+                  const Gap(10),
+                  Container(
+                    width: 120,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        border: Border.all(color: Colors.black, width: 1)),
+                    height: 30,
+                    child: Center(
+                      child: DropdownButton(
+                        items: valueList1.map((String item) {
+                          return DropdownMenuItem(
+                              value: item,
+                              child: Text(item,
+                                  style: AppTextStyle.bodyStyle16
+                                      .copyWith(color: Colors.black)));
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            _tagController.text = newValue!;
+                          });
+                        },
+                        value: _tagController.text,
+                        borderRadius: BorderRadius.circular(10),
+                        icon: Container(),
+                        underline: Container(),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                       ),
                     ),
-                    const Gap(20),
-                    Text(
-                      StringManager.howOften,
-                      style: AppTextStyle.bodyStyle14.copyWith(color: Colors.black),
+                  ),
+                  const Gap(40),
+                  Text(
+                    StringManager.affirm,
+                    style: AppTextStyle.bodyStyle16.copyWith(
+                      color: Colors.black,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Radio(
-                              value: 1,
-                              groupValue: _dialogValue,
-                              onChanged: (value) {
-                                setState(() {
-                                  _dialogValue = value!;
-                                });
-                              },
-                            ),
-                            const Gap(10),
-                            const Text(
-                              StringManager.daily,
-                              style: AppTextStyle.bodyStyle14,
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Radio(
-                              value: 2,
-                              groupValue: _dialogValue,
-                              onChanged: (value) {
-                                setState(() {
-                                  _dialogValue = value!;
-                                });
-                              },
-                            ),
-                            const Gap(10),
-                            const Text(
-                              StringManager.weekly,
-                              style: AppTextStyle.bodyStyle14,
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Radio(
-                              value: 3,
-                              groupValue: _dialogValue,
-                              onChanged: (value) {
-                                setState(() {
-                                  _dialogValue = value!;
-                                });
-                              },
-                            ),
-                            const Gap(10),
-                            const Text(
-                              StringManager.monthly,
-                              style: AppTextStyle.bodyStyle14,
-                            ),
-                          ],
-                        )
-                      ],
+                  ),
+                  const Gap(15),
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: ash2Color, width: 1)
                     ),
-                    Center(
-                      child: blueButton(text: StringManager.createAction),
-                    )
-                  ],
-                ),
+                    child: TextField(
+                      maxLines: 6,
+                      controller: _affirmationController,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: StringManager.whySetting,
+                        hintStyle: AppTextStyle.bodyStyle14,
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      ),
+                    ),
+                  ),
+                  const Gap(80),
+                  GestureDetector(
+                      onTap: () async {
+                        bool isSubmitted =
+                        await goalsAndCategoryProvider.addGoal(
+                              category: _categoryController.text.trim(),
+                              email: loginProvider.emailController.text.trim(),
+                              taskTitle: _taskTitleController.text.trim(),
+                              affirmation: _affirmationController.text.trim(),
+                              tag: _tagController.text.trim(),
+                              document: '',
+                              actionPlan: '',
+                              actionPlanFrequency: ''
+                        );
+                        if (isSubmitted == true) {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text('Goal Created!!'),
+                                actions: <Widget>[
+                                  TextButton(
+                                    child: const Text('Continue'),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                          loginProvider.emailController.clear();
+                          _affirmationController.clear();
+                          _taskTitleController.clear();
+                        } else {
+                        }
+                      },
+                      child: blueButton(text: StringManager.createGoal)),
+                  const Gap(100)
+                ],
               ),
-            );
-          },
-        );
-      },
+            ),
+           );
+          }
+         )
+       )
     );
   }
 }

@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:goalkit/api/providers/login_provider.dart';
@@ -64,7 +62,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   const Gap(20),
                   Container(
                     padding:
-                    EdgeInsets.symmetric(horizontal: 18.0, vertical: 20.0),
+                    const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20.0),
                     height: 180,
                     width: 342,
                     color: ash4Color,
@@ -97,10 +95,10 @@ class _SettingsPageState extends State<SettingsPage> {
                             )
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 8.0,
                         ),
-                        Text(
+                        const Text(
                           StringManager.lorem,
                           style: AppTextStyle.bodyStyle14,
                         ),

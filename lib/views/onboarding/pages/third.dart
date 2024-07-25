@@ -6,7 +6,6 @@ import 'package:goalkit/resources/managers/string_manager.dart';
 import 'package:goalkit/resources/managers/styles_manager.dart';
 import 'package:goalkit/resources/navigation/bottom_navigation.dart';
 import 'package:goalkit/views/authentication/login/login_page.dart';
-import 'package:goalkit/views/home/home_page.dart';
 
 class ThirdPage extends StatefulWidget {
   const ThirdPage({super.key});

@@ -44,9 +44,13 @@ class StringManager {
   static const String startWith = 'Start with your priority first';
   static const String newGoal = 'New Goal';
   static const String noCategory = 'No Category Available';
+  static const String noGoals = 'No Goals Available';
   static const String addCategory = 'Click on the add new category to';
   static const String create = 'create one';
   static const String newCategory = 'New Category';
+  static const String categories = 'Categories';
+  static const String chooseCategory = 'Choose Category';
+  static const String chooseTag = 'Choose Tag';
   static const String goalsG = 'Goals';
   static const String createNew = 'Create new goal';
   static const String wantAchieve = 'What do you want to achieve?';
@@ -55,6 +59,7 @@ class StringManager {
   static const String whySetting = 'Why are you setting this goal?';
   static const String action = 'Action Plans';
   static const String addAction = 'Add Action Plan';
+  static const String submit = 'Submit';
   static const String remind = 'Reminder';
   static const String tagDoc = 'Tap to upload a image or document';
   static const String uploadDoc = 'Upload a document';
