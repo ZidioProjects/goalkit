@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "1001666295148",
+    "project_id": "goalkit-1c4d9",
+    "storage_bucket": "goalkit-1c4d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001666295148:android:c779f80c97afa8a451ef49",
+        "android_client_info": {
+          "package_name": "com.example.goalkit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1001666295148-thml0uoij498k2kac51jpqa4g5idv3cn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.goalkit",
+            "certificate_hash": "c69cdd45aed80cf636bc226caab5af29cd560fc5"
+          }
+        },
+        {
+          "client_id": "1001666295148-gookvclmqe5ileu58iqovdmo9k767ta8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNAZrJitDij9MqaCZBtShrMemWp9v7aDQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1001666295148-gookvclmqe5ileu58iqovdmo9k767ta8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1001666295148-190f04iik9b3isa7qrerldvvh0hm539e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.goalkit"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
